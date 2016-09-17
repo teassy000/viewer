@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 
 #include <utils.h>
+#include <texture.h>
 
 
 int main(void)
@@ -13,7 +14,7 @@ int main(void)
 		exit(EXIT_FAILURE);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
-	window = glfwCreateWindow(1280, 720, "Simple example", NULL, NULL);
+	window = glfwCreateWindow(1920, 1080, "Simple example", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -25,7 +26,7 @@ int main(void)
 	gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 	glfwSwapInterval(1);
 
-	Load();
+	LoadShader();
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -42,8 +43,6 @@ int main(void)
 		glDrawArrays(GL_POLYGON, 0, 4);
 		glfwSwapBuffers(window);
 		glfwPollEvents();
-
-
 	}
 	glfwDestroyWindow(window);
 	glfwTerminate();

@@ -21,7 +21,7 @@ static const vec2 vertices[4] =
 
 static ShaderProgram* program;
 
-static void Load()
+static void LoadShader()
 {
 	GLuint vertex_buffer;
 	GLint vpos_location;
@@ -53,12 +53,12 @@ static void Load()
 }
 
 
-static void Reload()
+static void ReloadShader()
 {
 	program->Diable();
 	program = NULL;
 
-	Load();
+	LoadShader();
 }
 
 
@@ -68,7 +68,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
 
 	if (key == GLFW_KEY_F5 && action == GLFW_PRESS)
-		Reload();
+		ReloadShader();
 }
 
 
