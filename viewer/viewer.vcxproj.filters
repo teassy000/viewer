@@ -16,6 +16,9 @@
     <Filter Include="Source Files\glad">
       <UniqueIdentifier>{46f39301-0bd1-436f-8400-98f5dba5390a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{c706af0e-43b2-44ac-84e0-30d6de27127d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -23,6 +26,27 @@
     </ClCompile>
     <ClCompile Include="..\extern\glad\src\glad.c">
       <Filter>Source Files\glad</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\glGraphicManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\shaderProgram.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\shaderVisualOutput.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\shaderTextsOutput.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\fontAtlas.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -32,13 +56,28 @@
     <ClInclude Include="..\inc\utils.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\fontLoader.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\inc\shaderProgram.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\texture.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\glGraphicManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\precomp.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\baseRenderObject.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\shaderTextsOutput.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\shaderVisualOutput.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\fontAtlas.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

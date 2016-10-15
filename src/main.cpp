@@ -1,9 +1,22 @@
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "precomp.h"
+#include "glGraphicManager.h"
 
-#include <utils.h>
-#include <texture.h>
 
+
+static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+		glfwSetWindowShouldClose(window, GLFW_TRUE);
+ 
+  	if (key == GLFW_KEY_F5 && action == GLFW_PRESS)
+ 		glGraphicManager::getInstance()->Reload();
+}
+
+
+static void error_callback(int error, const char* description)
+{
+	fprintf(stderr, "Error: %s\n", description);
+}
 
 int main(void)
 {
@@ -26,21 +39,18 @@ int main(void)
 	gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 	glfwSwapInterval(1);
 
-	LoadShader();
+	glGraphicManager::getInstance()->Load();
 
 	while (!glfwWindowShouldClose(window))
 	{
-
 		int width, height;
 
 		glfwGetFramebufferSize(window, &width, &height);
 
 		glViewport(0, 0, width, height);
-		glClear(GL_COLOR_BUFFER_BIT);
 
-		program->Use();
+		glGraphicManager::getInstance()->Render();
 
-		glDrawArrays(GL_POLYGON, 0, 4);
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
