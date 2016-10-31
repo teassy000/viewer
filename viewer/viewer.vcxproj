@@ -21,7 +21,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -52,14 +52,14 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\extern\DevIL\include;..\extern\glfw\include;..\extern\freetype\include;..\extern\glad\include;..\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\extern\DevIL\include;..\extern\glfw\include;..\extern\freetype\include;..\extern\glad\include;..\extern\imgui;..\inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>freetype27d.lib;glfw3.lib;DevIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\extern\glfw\lib\debug;..\extern\freetype\lib\debug;..\extern\DevIL\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -83,22 +83,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\extern\glad\src\glad.c" />
-    <ClCompile Include="..\src\fontAtlas.cpp" />
+    <ClCompile Include="..\extern\imgui\imgui.cpp" />
+    <ClCompile Include="..\extern\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\extern\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\src\glGraphicManager.cpp" />
+    <ClCompile Include="..\src\imgui_glfw_impl.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\shader.cpp" />
-    <ClCompile Include="..\src\shaderTextsOutput.cpp" />
     <ClCompile Include="..\src\shaderVisualOutput.cpp" />
     <ClCompile Include="..\src\shaderProgram.cpp" />
     <ClCompile Include="..\src\texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\inc\baseRenderObject.h" />
-    <ClInclude Include="..\inc\fontAtlas.h" />
     <ClInclude Include="..\inc\glGraphicManager.h" />
+    <ClInclude Include="..\inc\imgui_glfw_impl.h" />
     <ClInclude Include="..\inc\precomp.h" />
     <ClInclude Include="..\inc\shaderVisualOutput.h" />
-    <ClInclude Include="..\inc\shaderTextsOutput.h" />
     <ClInclude Include="..\inc\texture.h" />
     <ClInclude Include="..\inc\utils.h" />
     <ClInclude Include="..\inc\shader.h" />

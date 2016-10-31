@@ -19,6 +19,9 @@
     <Filter Include="Rendering">
       <UniqueIdentifier>{c706af0e-43b2-44ac-84e0-30d6de27127d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Imgui">
+      <UniqueIdentifier>{106f459e-2ea9-42db-81e9-f935c01ab370}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -42,11 +45,17 @@
     <ClCompile Include="..\src\shaderVisualOutput.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\shaderTextsOutput.cpp">
+    <ClCompile Include="..\src\imgui_glfw_impl.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\fontAtlas.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\extern\imgui\imgui.cpp">
+      <Filter>Source Files\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extern\imgui\imgui_demo.cpp">
+      <Filter>Source Files\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extern\imgui\imgui_draw.cpp">
+      <Filter>Source Files\Imgui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -71,14 +80,11 @@
     <ClInclude Include="..\inc\baseRenderObject.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\shaderTextsOutput.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="..\inc\shaderVisualOutput.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\fontAtlas.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\inc\imgui_glfw_impl.h">
+      <Filter>Rendering</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

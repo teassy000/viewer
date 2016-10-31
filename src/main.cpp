@@ -1,5 +1,6 @@
 #include "precomp.h"
 #include "glGraphicManager.h"
+#include "imgui_glfw_impl.h"
 
 
 
@@ -27,7 +28,7 @@ int main(void)
 		exit(EXIT_FAILURE);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
-	window = glfwCreateWindow(1920, 1080, "Simple example", NULL, NULL);
+	window = glfwCreateWindow(800, 600, "Simple example", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -39,7 +40,13 @@ int main(void)
 	gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 	glfwSwapInterval(1);
 
+	std::cout << "GL version "  << GLVersion.major << "." 
+		<< GLVersion.minor  << "is loaded" << std::endl;
+
+
 	glGraphicManager::getInstance()->Load();
+	ImGui_ImplGlfwGL3_Init(window, true);
+
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -48,13 +55,44 @@ int main(void)
 		glfwGetFramebufferSize(window, &width, &height);
 
 		glViewport(0, 0, width, height);
+		glClearColor(0.5f, 0.3f, 0.0f, 1.0f);
+		
+		
 
-		glGraphicManager::getInstance()->Render();
+		//ImGui::NewFrame();
+		ImGui_ImplGlfwGL3_NewFrame();
+		//glGraphicManager::getInstance()->Render();
+		{
+			ImGui::SetNextWindowPos(ImVec2(0, 0));
+			ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
+			ImGui::Begin("background", NULL, ImVec2(0, 0), 0.0f,
+				ImGuiWindowFlags_NoTitleBar
+				| ImGuiWindowFlags_NoResize
+				| ImGuiWindowFlags_NoScrollbar
+				| ImGuiWindowFlags_NoMove
+				| ImGuiWindowFlags_NoScrollWithMouse
+			);
+			//ImGui::Image((void*)GL_TEXTURE0, ImVec2(800, 600));
+			//ImGui::Text("This is background");
+			ImGui::End();
+		}
+		{
+			ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiSetCond_FirstUseEver);
+			ImGui::Begin("Title");
+			ImGui::Text("Hello, world!");
 
+			ImGui::End();
+		}
+
+
+		// ImGui functions end here
+		ImGui::Render();
+		
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
 	glfwDestroyWindow(window);
+	ImGui_ImplGlfwGL3_Shutdown();
 	glfwTerminate();
 	exit(EXIT_SUCCESS);
 }
