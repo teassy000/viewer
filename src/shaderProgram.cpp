@@ -2,35 +2,35 @@
 
 ShaderProgram::ShaderProgram()
 {
-	programId = glCreateProgram();
+	programid_ = glCreateProgram();
 
-	shaderCount = 0;
+	shadercount_ = 0;
 }
 
 
 ShaderProgram::~ShaderProgram()
 {
-	glDeleteProgram(programId);
+	glDeleteProgram(programid_);
 }
 
 
 void ShaderProgram::AttachShader(Shader shader)
 {
-	glAttachShader(programId, shader.GetId());
+	glAttachShader(programid_, shader.GetId());
 
-	shaderCount++;
+	shadercount_++;
 }
 
 
 void ShaderProgram::Link()
 {
-	if (shaderCount >= MIN_NUM_SHADER)
+	if (shadercount_ >= MIN_NUM_SHADER)
 	{
 
-		glLinkProgram(programId);
+		glLinkProgram(programid_);
 
 		GLint succeed;
-		glGetProgramiv(programId, GL_LINK_STATUS, &succeed);
+		glGetProgramiv(programid_, GL_LINK_STATUS, &succeed);
 
 		if (succeed == GL_FALSE)
 		{
@@ -54,7 +54,7 @@ GLuint ShaderProgram::Attribute(const std::string& attribute)
 	GLuint value;
 
 	try {
-		value = attributeList.at(attribute);
+		value = attributelist_.at(attribute);
 	}
 	catch (const std::out_of_range& oor) {
 		std::cout << "Getting attribute " << attribute << " failed: " << oor.what() << std::endl;
@@ -71,7 +71,7 @@ GLuint ShaderProgram::Uniform(const std::string& uniform)
 	GLuint value;
 
 	try {
-		value = uniformList.at(uniform);
+		value = uniformlist_.at(uniform);
 	}
 	catch (const std::out_of_range& oor) {
 		std::cout << "Getting uniform " << uniform << " failed: " << oor.what() << std::endl;
@@ -84,11 +84,11 @@ GLuint ShaderProgram::Uniform(const std::string& uniform)
 
 int ShaderProgram::AddAttribute(const std::string& attribute)
 {
-	int id = glGetAttribLocation(programId, attribute.c_str());
+	int id = glGetAttribLocation(programid_, attribute.c_str());
 
 	if (id != -1)
 	{
-		attributeList[attribute] = id;
+		attributelist_[attribute] = id;
 	}
 	else
 	{
@@ -101,11 +101,11 @@ int ShaderProgram::AddAttribute(const std::string& attribute)
 
 int ShaderProgram::AddUniform(const std::string& uniform)
 {
-	int id = glGetAttribLocation(programId, uniform.c_str());
+	int id = glGetAttribLocation(programid_, uniform.c_str());
 
 	if (id != -1)
 	{
-		uniformList[uniform] = id;
+		uniformlist_[uniform] = id;
 	}
 	else
 	{

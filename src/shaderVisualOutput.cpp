@@ -3,7 +3,7 @@
 
 
 ShaderVisualOutput::ShaderVisualOutput()
-	: m_program(std::make_unique<ShaderProgram>())
+	: program_(std::make_unique<ShaderProgram>())
 {
 }
 
@@ -44,18 +44,18 @@ void ShaderVisualOutput::LoadShader()
 	
 	
 	// load and compile shader
-	std::unique_ptr<Shader> up_vert(new Shader(GL_VERTEX_SHADER));
-	up_vert.get()->LoadFromFile("..\\..\\shaders\\default.vs.glsl");
-	up_vert.get()->Compile();
+	std::unique_ptr<Shader> _vert(new Shader(GL_VERTEX_SHADER));
+	_vert.get()->LoadFromFile("..\\..\\shaders\\default.vs.glsl");
+	_vert.get()->Compile();
 
-	std::unique_ptr<Shader> up_frag(new Shader(GL_FRAGMENT_SHADER));
-	up_frag.get()->LoadFromFile("..\\..\\shaders\\default.fs.glsl");
-	up_frag.get()->Compile();
+	std::unique_ptr<Shader> _frag(new Shader(GL_FRAGMENT_SHADER));
+	_frag.get()->LoadFromFile("..\\..\\shaders\\default.fs.glsl");
+	_frag.get()->Compile();
 
 	
-	m_program.get()->AttachShader( *(up_vert.get()) );
-	m_program.get()->AttachShader( *(up_frag.get()) );
-	m_program.get()->Link();
+	program_.get()->AttachShader( *(_vert.get()) );
+	program_.get()->AttachShader( *(_frag.get()) );
+	program_.get()->Link();
 
 
 }
@@ -85,8 +85,8 @@ void ShaderVisualOutput::LoadFramebuffer()
 
 void ShaderVisualOutput::Reload()
 {
-	m_program.get()->Disable();
-	m_program.reset(new ShaderProgram);
+	program_.get()->Disable();
+	program_.reset(new ShaderProgram);
 
 	LoadShader();
 }
@@ -94,7 +94,7 @@ void ShaderVisualOutput::Reload()
 
 void ShaderVisualOutput::Render()
 {
-	m_program.get()->Use();
+	program_.get()->Use();
 
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, (void*)0);

@@ -15,12 +15,12 @@ private:
 public:
 	static glGraphicManager* getInstance()
 	{
-		static glGraphicManager* m_instance;
-		if (m_instance == nullptr)
+		static glGraphicManager* instance_;
+		if (instance_ == nullptr)
 		{
-			m_instance = new glGraphicManager();
+			instance_ = new glGraphicManager();
 		}
-		return m_instance;
+		return instance_;
 	}
 
 	~glGraphicManager();
@@ -30,5 +30,5 @@ public:
 	void Render();
 
 private:
-	std::unique_ptr<ShaderVisualOutput> m_shaderOutput;
+	std::unique_ptr<ShaderVisualOutput> shaderoutput_;
 };

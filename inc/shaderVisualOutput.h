@@ -17,7 +17,7 @@ private:
 	void LoadFramebuffer();
 
 private:
-	std::unique_ptr<ShaderProgram> m_program;
+	std::unique_ptr<ShaderProgram> program_;
 	GLuint texture_;
 	GLuint framebuffer_;
 	GLuint vertexbuffer_;

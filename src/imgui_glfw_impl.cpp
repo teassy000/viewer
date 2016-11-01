@@ -1,3 +1,5 @@
+// This file is copy from Dear ImGui's example but using glad warp GL funcs.
+
 #include "imgui_glfw_impl.h"
 #include "precomp.h"
 

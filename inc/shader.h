@@ -19,13 +19,13 @@ public:
 	void LoadFromFile(const std::string& filename);
 	void Compile();
 
-	inline GLuint GetId() { return id; }
-	inline std::string GetSource() { return source; }
+	inline GLuint GetId() { return id_; }
+	inline std::string GetSource() { return source_; }
 
 private:
-	GLuint id;
-	ShaderType type;
-	std::string source;
+	GLuint id_;
+	ShaderType type_;
+	std::string source_;
 };
 
 

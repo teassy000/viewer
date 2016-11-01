@@ -2,7 +2,7 @@
 #include "utils.h"
 
 glGraphicManager::glGraphicManager()
-	: m_shaderOutput(std::make_unique<ShaderVisualOutput>())
+	: shaderoutput_(std::make_unique<ShaderVisualOutput>())
 {
 }
 
@@ -15,19 +15,19 @@ glGraphicManager::~glGraphicManager()
 
 void glGraphicManager::Load()
 {
-	m_shaderOutput.get()->Load();
+	shaderoutput_.get()->Load();
 }
 
 
 
 void glGraphicManager::Reload()
 {
-	m_shaderOutput.get()->Reload();
+	shaderoutput_.get()->Reload();
 }
 
 
 
 void glGraphicManager::Render()
 {
-	m_shaderOutput.get()->Render();
+	shaderoutput_.get()->Render();
 }

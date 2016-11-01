@@ -17,7 +17,7 @@ public:
 	void AttachShader(Shader shader);
 	void Link();
 
-	inline void Use() { glUseProgram(programId); }; //enable the program
+	inline void Use() { glUseProgram(programid_); }; //enable the program
 	inline void Disable() { glUseProgram(0); }
 
 	GLuint Attribute(const std::string& attribute);
@@ -27,11 +27,11 @@ public:
 	int AddUniform(const std::string& uniform);
 
 private:
-	GLuint programId;
-	GLuint shaderCount;		// num of shaders that attach to the program.
+	GLuint programid_;
+	GLuint shadercount_;		// num of shaders that attach to the program.
 
-	std::map<std::string, int> attributeList;
-	std::map<std::string, int> uniformList;
+	std::map<std::string, int> attributelist_;
+	std::map<std::string, int> uniformlist_;
 };
 
 

@@ -6,19 +6,19 @@ Shader::Shader(const GLenum &GLType)
 {
 	if (GLType == GL_VERTEX_SHADER)
 	{
-		type = "Vertex";
+		type_ = "Vertex";
 	}
 	else if (GLType == GL_FRAGMENT_SHADER)
 	{
-		type = "Fragment";
+		type_ = "Fragment";
 	}
 	else if (GLType == GL_GEOMETRY_SHADER)
 	{
-		type = "Geometry";
+		type_ = "Geometry";
 	}
 
 
-	id = glCreateShader(GLType);
+	id_ = glCreateShader(GLType);
 }
 
 
@@ -38,36 +38,36 @@ void Shader::LoadFromFile(const std::string& filename)
 
 	ifs.close();
 
-	source = ss.str();
+	source_ = ss.str();
 
-	const char* sourceChars = source.c_str();
+	const char* sourceChars = source_.c_str();
 
-	glShaderSource(id, 1, &sourceChars, NULL);
+	glShaderSource(id_, 1, &sourceChars, NULL);
 }
 
 
 void Shader::Compile()
 {
-	glCompileShader(id);
+	glCompileShader(id_);
 
 	// Check Error
 	GLint succeed;
-	glGetShaderiv(id, GL_COMPILE_STATUS, &succeed);
+	glGetShaderiv(id_, GL_COMPILE_STATUS, &succeed);
 
 	if (succeed == GL_FALSE)
 	{
 		GLint infoLogLength;
-		glGetShaderiv(id, GL_INFO_LOG_LENGTH, &infoLogLength);
+		glGetShaderiv(id_, GL_INFO_LOG_LENGTH, &infoLogLength);
 
 		GLchar* infoLog = new GLchar[infoLogLength + 1];
-		glGetShaderInfoLog(id, infoLogLength, NULL, infoLog);
+		glGetShaderInfoLog(id_, infoLogLength, NULL, infoLog);
 
-		std::cout << type << " shader compile failed: " << infoLog << std::endl;
+		std::cout << type_ << " shader compile failed: " << infoLog << std::endl;
 
 		delete[] infoLog;
 	}
 	else
 	{
-		std::cout << type << " shader compile succeed" << std::endl;
+		std::cout << type_ << " shader compile succeed" << std::endl;
 	}
 }
