@@ -2,7 +2,6 @@
 
 #include "precomp.h"
 #include "shaderVisualOutput.h"
-#include "shaderTextsOutput.h"
 
 
 // Here's glGraphicManager do:

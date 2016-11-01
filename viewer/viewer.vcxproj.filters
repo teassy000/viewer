@@ -30,9 +30,6 @@
     <ClCompile Include="..\extern\glad\src\glad.c">
       <Filter>Source Files\glad</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\glGraphicManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -66,9 +63,6 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\shaderProgram.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\texture.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\glGraphicManager.h">

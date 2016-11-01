@@ -98,10 +98,11 @@ void ShaderVisualOutput::Render()
 
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, (void*)0);
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texture_);
+
 	glClear(GL_COLOR_BUFFER_BIT);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 	glDisableVertexAttribArray(0);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
 	glUseProgram(0);
 }

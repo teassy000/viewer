@@ -92,7 +92,6 @@
     <ClCompile Include="..\src\shader.cpp" />
     <ClCompile Include="..\src\shaderVisualOutput.cpp" />
     <ClCompile Include="..\src\shaderProgram.cpp" />
-    <ClCompile Include="..\src\texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\inc\baseRenderObject.h" />
@@ -100,7 +99,6 @@
     <ClInclude Include="..\inc\imgui_glfw_impl.h" />
     <ClInclude Include="..\inc\precomp.h" />
     <ClInclude Include="..\inc\shaderVisualOutput.h" />
-    <ClInclude Include="..\inc\texture.h" />
     <ClInclude Include="..\inc\utils.h" />
     <ClInclude Include="..\inc\shader.h" />
     <ClInclude Include="..\inc\shaderProgram.h" />

@@ -56,26 +56,10 @@ int main(void)
 
 		glViewport(0, 0, width, height);
 		glClearColor(0.5f, 0.3f, 0.0f, 1.0f);
-		
-		
 
-		//ImGui::NewFrame();
 		ImGui_ImplGlfwGL3_NewFrame();
-		//glGraphicManager::getInstance()->Render();
-		{
-			ImGui::SetNextWindowPos(ImVec2(0, 0));
-			ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
-			ImGui::Begin("background", NULL, ImVec2(0, 0), 0.0f,
-				ImGuiWindowFlags_NoTitleBar
-				| ImGuiWindowFlags_NoResize
-				| ImGuiWindowFlags_NoScrollbar
-				| ImGuiWindowFlags_NoMove
-				| ImGuiWindowFlags_NoScrollWithMouse
-			);
-			//ImGui::Image((void*)GL_TEXTURE0, ImVec2(800, 600));
-			//ImGui::Text("This is background");
-			ImGui::End();
-		}
+		glGraphicManager::getInstance()->Render();
+
 		{
 			ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiSetCond_FirstUseEver);
 			ImGui::Begin("Title");
