@@ -2,8 +2,8 @@
 /*
 
 # include directory /src and /inc
-!/src/*.cpp
-!/inc/*.h
+!/src/*
+!/inc/*
 
 # include directory /extern/glad and  /extern/glfw
 !/extern/glad/*
