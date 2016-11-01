@@ -1,5 +1,6 @@
 # exclude everything
 *.*
+/extern/imgui/*
 
 # include directory /src and /inc
 !/src/*
