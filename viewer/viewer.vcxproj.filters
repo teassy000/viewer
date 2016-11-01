@@ -24,26 +24,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\extern\glad\src\glad.c">
       <Filter>Source Files\glad</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\glGraphicManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\shaderProgram.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\shaderVisualOutput.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\imgui_glfw_impl.cpp">
-      <Filter>Rendering</Filter>
     </ClCompile>
     <ClCompile Include="..\extern\imgui\imgui.cpp">
       <Filter>Source Files\Imgui</Filter>
@@ -53,6 +35,24 @@
     </ClCompile>
     <ClCompile Include="..\extern\imgui\imgui_draw.cpp">
       <Filter>Source Files\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\glgraphicmanager.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\shader.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\shaderprogram.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\imgui_glfw_impl.cc">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\shadervisualoutput.cc">
+      <Filter>Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,19 +65,19 @@
     <ClInclude Include="..\inc\shaderProgram.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\glGraphicManager.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\inc\precomp.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\baseRenderObject.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\shaderVisualOutput.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="..\inc\imgui_glfw_impl.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\shadervisualoutput.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\glgraphicmanager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\baserenderobject.h">
       <Filter>Rendering</Filter>
     </ClInclude>
   </ItemGroup>

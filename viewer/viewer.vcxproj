@@ -86,19 +86,19 @@
     <ClCompile Include="..\extern\imgui\imgui.cpp" />
     <ClCompile Include="..\extern\imgui\imgui_demo.cpp" />
     <ClCompile Include="..\extern\imgui\imgui_draw.cpp" />
-    <ClCompile Include="..\src\glGraphicManager.cpp" />
-    <ClCompile Include="..\src\imgui_glfw_impl.cpp" />
-    <ClCompile Include="..\src\main.cpp" />
-    <ClCompile Include="..\src\shader.cpp" />
-    <ClCompile Include="..\src\shaderVisualOutput.cpp" />
-    <ClCompile Include="..\src\shaderProgram.cpp" />
+    <ClCompile Include="..\src\glgraphicmanager.cc" />
+    <ClCompile Include="..\src\imgui_glfw_impl.cc" />
+    <ClCompile Include="..\src\main.cc" />
+    <ClCompile Include="..\src\shader.cc" />
+    <ClCompile Include="..\src\shaderprogram.cc" />
+    <ClCompile Include="..\src\shadervisualoutput.cc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\inc\baseRenderObject.h" />
-    <ClInclude Include="..\inc\glGraphicManager.h" />
+    <ClInclude Include="..\inc\baserenderobject.h" />
+    <ClInclude Include="..\inc\glgraphicmanager.h" />
     <ClInclude Include="..\inc\imgui_glfw_impl.h" />
     <ClInclude Include="..\inc\precomp.h" />
-    <ClInclude Include="..\inc\shaderVisualOutput.h" />
+    <ClInclude Include="..\inc\shadervisualoutput.h" />
     <ClInclude Include="..\inc\utils.h" />
     <ClInclude Include="..\inc\shader.h" />
     <ClInclude Include="..\inc\shaderProgram.h" />

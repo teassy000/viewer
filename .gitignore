@@ -1,5 +1,5 @@
 # exclude everything
-/*
+*.*
 
 # include directory /src and /inc
 !/src/*
