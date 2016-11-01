@@ -1,42 +1,21 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# exclude everything
+/*
 
-# Precompiled Headers
-*.gch
-*.pch
+# include directory /src and /inc
+!/src/*.cpp
+!/inc/*.h
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+# include directory /extern/glad and  /extern/glfw
+!/extern/glad/*
+!/extern/glfw/*
 
-# Fortran module files
-*.mod
-*.smod
+# include directory shaders
+!/shaders/*.glsl
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+# include project file
+!/viewer/*.sln
+!/viewer/*.vcxproj
+!/viewer/*.vcxproj.filters
 
-# Executables
-*.exe
-*.out
-*.app
-
-# External
-*.idb
-*.log
-*.pdb
-*.suo
-*.tlog
-*.sdf
-*.user
-*.db
-*.opendb
-*.exp
-*.ilk
+# include .gitignore
+!/.gitignore
