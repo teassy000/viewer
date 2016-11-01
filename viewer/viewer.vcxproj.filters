@@ -62,9 +62,6 @@
     <ClInclude Include="..\inc\utils.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\shaderProgram.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\inc\precomp.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -79,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="..\inc\baserenderobject.h">
       <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\shaderprogram.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

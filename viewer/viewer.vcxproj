@@ -98,10 +98,10 @@
     <ClInclude Include="..\inc\glgraphicmanager.h" />
     <ClInclude Include="..\inc\imgui_glfw_impl.h" />
     <ClInclude Include="..\inc\precomp.h" />
+    <ClInclude Include="..\inc\shaderprogram.h" />
     <ClInclude Include="..\inc\shadervisualoutput.h" />
     <ClInclude Include="..\inc\utils.h" />
     <ClInclude Include="..\inc\shader.h" />
-    <ClInclude Include="..\inc\shaderProgram.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
