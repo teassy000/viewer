@@ -22,7 +22,7 @@ Shader::Shader(const GLenum &GLType)
 }
 
 
-void Shader::LoadFromFile(const std::string& filename)
+void Shader::load_from_file(const std::string& filename)
 {
 	std::ifstream ifs;
 	ifs.open(filename.c_str());
@@ -46,7 +46,7 @@ void Shader::LoadFromFile(const std::string& filename)
 }
 
 
-void Shader::Compile()
+void Shader::compile()
 {
 	glCompileShader(id_);
 

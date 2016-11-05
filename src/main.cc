@@ -4,16 +4,6 @@
 
 
 
-static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
-{
-	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, GLFW_TRUE);
- 
-  	if (key == GLFW_KEY_F5 && action == GLFW_PRESS)
- 		glGraphicManager::getInstance()->Reload();
-}
-
-
 static void error_callback(int error, const char* description)
 {
 	fprintf(stderr, "Error: %s\n", description);
@@ -35,7 +25,6 @@ int main(void)
 		exit(EXIT_FAILURE);
 	}
 	
-	glfwSetKeyCallback(window, key_callback);
 	glfwMakeContextCurrent(window);
 	gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 	glfwSwapInterval(1);
@@ -44,7 +33,7 @@ int main(void)
 		<< GLVersion.minor  << "is loaded" << std::endl;
 
 
-	glGraphicManager::getInstance()->Load();
+	glGraphicManager::get_instance()->load();
 	ImGui_ImplGlfwGL3_Init(window, true);
 
 
@@ -58,7 +47,7 @@ int main(void)
 		glClearColor(0.5f, 0.3f, 0.0f, 1.0f);
 
 		ImGui_ImplGlfwGL3_NewFrame();
-		glGraphicManager::getInstance()->Render();
+		glGraphicManager::get_instance()->render();
 
 		{
 			ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiSetCond_FirstUseEver);

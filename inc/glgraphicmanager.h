@@ -13,7 +13,7 @@ private:
 	glGraphicManager();
 	
 public:
-	static glGraphicManager* getInstance()
+	static glGraphicManager* get_instance()
 	{
 		static glGraphicManager* instance_;
 		if (instance_ == nullptr)
@@ -25,9 +25,10 @@ public:
 
 	~glGraphicManager();
 
-	void Load();
-	void Reload();
-	void Render();
+	void load();
+	void reload();
+	void render();
+	void shutdown();
 
 private:
 	std::unique_ptr<ShaderVisualOutput> shaderoutput_;

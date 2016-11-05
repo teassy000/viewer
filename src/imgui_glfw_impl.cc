@@ -1,7 +1,8 @@
 // This file is copy from Dear ImGui's example but using glad warp GL funcs.
 
-#include "imgui_glfw_impl.h"
 #include "precomp.h"
+#include "imgui_glfw_impl.h"
+#include "glgraphicmanager.h"
 
 #ifdef _WIN32
 #undef APIENTRY
@@ -151,6 +152,10 @@ void ImGui_ImplGlfwGL3_KeyCallback(GLFWwindow*, int key, int, int action, int mo
 	io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT] || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
 	io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
 	io.KeySuper = io.KeysDown[GLFW_KEY_LEFT_SUPER] || io.KeysDown[GLFW_KEY_RIGHT_SUPER];
+
+
+	if (io.KeyCtrl && io.KeysDown[GLFW_KEY_R])
+		glGraphicManager::get_instance()->reload();
 }
 
 void ImGui_ImplGlfwGL3_CharCallback(GLFWwindow*, unsigned int c)

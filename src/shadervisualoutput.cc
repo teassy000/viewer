@@ -14,14 +14,14 @@ ShaderVisualOutput::~ShaderVisualOutput()
 }
 
 
-void ShaderVisualOutput::Load()
+void ShaderVisualOutput::load()
 {
-	LoadShader();
-	LoadFramebuffer();
+	load_shader();
+	load_framebuffer();
 }
 
 
-void ShaderVisualOutput::LoadShader()
+void ShaderVisualOutput::load_shader()
 {
 	// generate and bind the vertex buffer.
 	const vec2 vertices[6] =
@@ -45,23 +45,23 @@ void ShaderVisualOutput::LoadShader()
 	
 	// load and compile shader
 	std::unique_ptr<Shader> _vert(new Shader(GL_VERTEX_SHADER));
-	_vert.get()->LoadFromFile("..\\..\\shaders\\default.vs.glsl");
-	_vert.get()->Compile();
+	_vert.get()->load_from_file("..\\..\\shaders\\default.vs.glsl");
+	_vert.get()->compile();
 
 	std::unique_ptr<Shader> _frag(new Shader(GL_FRAGMENT_SHADER));
-	_frag.get()->LoadFromFile("..\\..\\shaders\\default.fs.glsl");
-	_frag.get()->Compile();
+	_frag.get()->load_from_file("..\\..\\shaders\\default.fs.glsl");
+	_frag.get()->compile();
 
 	
-	program_.get()->AttachShader( *(_vert.get()) );
-	program_.get()->AttachShader( *(_frag.get()) );
-	program_.get()->Link();
+	program_.get()->attach_shader( *(_vert.get()) );
+	program_.get()->attach_shader( *(_frag.get()) );
+	program_.get()->link();
 
-
+	return;
 }
 
 
-void ShaderVisualOutput::LoadFramebuffer()
+void ShaderVisualOutput::load_framebuffer()
 {
 	glGenFramebuffers(1, &framebuffer_);
 	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer_);
@@ -83,18 +83,18 @@ void ShaderVisualOutput::LoadFramebuffer()
 }
 
 
-void ShaderVisualOutput::Reload()
+void ShaderVisualOutput::reload()
 {
-	program_.get()->Disable();
+	program_.get()->disable();
 	program_.reset(new ShaderProgram);
 
-	LoadShader();
+	load_shader();
 }
 
 
-void ShaderVisualOutput::Render()
+void ShaderVisualOutput::render()
 {
-	program_.get()->Use();
+	program_.get()->use();
 
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, (void*)0);

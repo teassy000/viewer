@@ -14,17 +14,17 @@ public:
 	~ShaderProgram();
 
 public:
-	void AttachShader(Shader shader);
-	void Link();
+	void attach_shader(Shader shader);
+	void link();
 
-	inline void Use() { glUseProgram(programid_); }; //enable the program
-	inline void Disable() { glUseProgram(0); }
+	inline void use() { glUseProgram(programid_); }; //enable the program
+	inline void disable() { glUseProgram(0); }
 
-	GLuint Attribute(const std::string& attribute);
-	GLuint Uniform(const std::string& uniform);
+	GLuint attribute(const std::string& attribute);
+	GLuint uniform(const std::string& uniform);
 
-	int AddAttribute(const std::string& attribute);
-	int AddUniform(const std::string& uniform);
+	int add_attribute(const std::string& attribute);
+	int add_uniform(const std::string& uniform);
 
 private:
 	GLuint programid_;

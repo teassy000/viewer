@@ -13,21 +13,27 @@ glGraphicManager::~glGraphicManager()
 
 
 
-void glGraphicManager::Load()
+void glGraphicManager::load()
 {
-	shaderoutput_.get()->Load();
+	shaderoutput_.get()->load();
 }
 
 
 
-void glGraphicManager::Reload()
+void glGraphicManager::reload()
 {
-	shaderoutput_.get()->Reload();
+	shaderoutput_.get()->reload();
 }
 
 
 
-void glGraphicManager::Render()
+void glGraphicManager::render()
 {
-	shaderoutput_.get()->Render();
+	shaderoutput_.get()->render();
+}
+
+
+void glGraphicManager::shutdown()
+{
+
 }

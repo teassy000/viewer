@@ -9,12 +9,12 @@ public:
 	ShaderVisualOutput();
 	virtual ~ShaderVisualOutput();
 
-	virtual void Load() override;
-	virtual void Reload() override;
-	virtual void Render() override;
+	virtual void load() override;
+	virtual void reload() override;
+	virtual void render() override;
 private:
-	void LoadShader();
-	void LoadFramebuffer();
+	void load_shader();
+	void load_framebuffer();
 
 private:
 	std::unique_ptr<ShaderProgram> program_;

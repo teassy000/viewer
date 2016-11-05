@@ -16,11 +16,11 @@ public:
 	~Shader() {};
 
 public:
-	void LoadFromFile(const std::string& filename);
-	void Compile();
+	void load_from_file(const std::string& filename);
+	void compile();
 
-	inline GLuint GetId() { return id_; }
-	inline std::string GetSource() { return source_; }
+	inline GLuint get_id() { return id_; }
+	inline std::string get_source() { return source_; }
 
 private:
 	GLuint id_;

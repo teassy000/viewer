@@ -14,15 +14,15 @@ ShaderProgram::~ShaderProgram()
 }
 
 
-void ShaderProgram::AttachShader(Shader shader)
+void ShaderProgram::attach_shader(Shader shader)
 {
-	glAttachShader(programid_, shader.GetId());
+	glAttachShader(programid_, shader.get_id());
 
 	shadercount_++;
 }
 
 
-void ShaderProgram::Link()
+void ShaderProgram::link()
 {
 	if (shadercount_ >= MIN_NUM_SHADER)
 	{
@@ -49,7 +49,7 @@ void ShaderProgram::Link()
 }
 
 
-GLuint ShaderProgram::Attribute(const std::string& attribute)
+GLuint ShaderProgram::attribute(const std::string& attribute)
 {
 	GLuint value;
 
@@ -66,7 +66,7 @@ GLuint ShaderProgram::Attribute(const std::string& attribute)
 
 
 
-GLuint ShaderProgram::Uniform(const std::string& uniform)
+GLuint ShaderProgram::uniform(const std::string& uniform)
 {
 	GLuint value;
 
@@ -82,7 +82,7 @@ GLuint ShaderProgram::Uniform(const std::string& uniform)
 }
 
 
-int ShaderProgram::AddAttribute(const std::string& attribute)
+int ShaderProgram::add_attribute(const std::string& attribute)
 {
 	int id = glGetAttribLocation(programid_, attribute.c_str());
 
@@ -99,7 +99,7 @@ int ShaderProgram::AddAttribute(const std::string& attribute)
 }
 
 
-int ShaderProgram::AddUniform(const std::string& uniform)
+int ShaderProgram::add_uniform(const std::string& uniform)
 {
 	int id = glGetAttribLocation(programid_, uniform.c_str());
 

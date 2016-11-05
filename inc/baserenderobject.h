@@ -7,7 +7,7 @@
 class BaseRenderObject
 {
 public:
-	virtual void Load() = 0;
-	virtual void Reload() = 0;
-	virtual void Render() = 0;
+	virtual void load() = 0;
+	virtual void reload() = 0;
+	virtual void render() = 0;
 };
