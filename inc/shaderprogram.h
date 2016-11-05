@@ -1,6 +1,6 @@
 #pragma once
 #include "precomp.h"
-#include <shader.h>
+#include "shader.h"
 #include <map>
 
 
@@ -15,10 +15,11 @@ public:
 
 public:
 	void attach_shader(Shader shader);
-	void link();
+	bool link();
 
 	inline void use() { glUseProgram(programid_); }; //enable the program
 	inline void disable() { glUseProgram(0); }
+
 
 	GLuint attribute(const std::string& attribute);
 	GLuint uniform(const std::string& uniform);

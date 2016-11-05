@@ -1,5 +1,7 @@
 #include "shader.h"
 
+#include <fstream>
+#include <sstream>
 
 
 Shader::Shader(const GLenum &GLType)
@@ -46,7 +48,7 @@ void Shader::load_from_file(const std::string& filename)
 }
 
 
-void Shader::compile()
+bool Shader::compile()
 {
 	glCompileShader(id_);
 
@@ -54,6 +56,8 @@ void Shader::compile()
 	GLint succeed;
 	glGetShaderiv(id_, GL_COMPILE_STATUS, &succeed);
 
+
+	bool result = false;
 	if (succeed == GL_FALSE)
 	{
 		GLint infoLogLength;
@@ -65,9 +69,15 @@ void Shader::compile()
 		std::cout << type_ << " shader compile failed: " << infoLog << std::endl;
 
 		delete[] infoLog;
+
+		result = false;
 	}
 	else
 	{
 		std::cout << type_ << " shader compile succeed" << std::endl;
+
+		result = true;
 	}
+
+	return result;
 }

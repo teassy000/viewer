@@ -12,7 +12,9 @@ public:
 	virtual void load() override;
 	virtual void reload() override;
 	virtual void render() override;
+
 private:
+	void load_vertexbuffer();
 	void load_shader();
 	void load_framebuffer();
 

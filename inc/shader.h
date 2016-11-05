@@ -3,8 +3,6 @@
 #include "precomp.h"
 
 #include <string>
-#include <fstream>
-#include <sstream>
 
 
 class Shader
@@ -17,7 +15,8 @@ public:
 
 public:
 	void load_from_file(const std::string& filename);
-	void compile();
+	void load_from_buffer(const std::string& source);
+	bool compile();
 
 	inline GLuint get_id() { return id_; }
 	inline std::string get_source() { return source_; }

@@ -16,12 +16,44 @@ ShaderVisualOutput::~ShaderVisualOutput()
 
 void ShaderVisualOutput::load()
 {
+	load_vertexbuffer();
 	load_shader();
 	load_framebuffer();
 }
 
 
 void ShaderVisualOutput::load_shader()
+{	
+	bool result = false;
+	// load and compile shader
+	std::unique_ptr<Shader> vert(new Shader(GL_VERTEX_SHADER));
+	vert.get()->load_from_file("..\\..\\shaders\\default.vs.glsl");
+	result = vert.get()->compile();
+	if (!result)
+		return;
+
+	std::unique_ptr<Shader> frag(new Shader(GL_FRAGMENT_SHADER));
+	frag.get()->load_from_file("..\\..\\shaders\\default.fs.glsl");
+	result = frag.get()->compile();
+
+	if (!result)
+		return;
+
+	std::unique_ptr<ShaderProgram> program(new ShaderProgram);
+	program.get()->attach_shader(*(vert.get()));
+	program.get()->attach_shader(*(frag.get()));
+	result = program.get()->link();
+	if (!result)
+		return;
+
+	// if everything is correct, then set the program_
+	program_.get()->disable();
+	program_.reset(new ShaderProgram);
+	program_ = std::move(program);
+}
+
+
+void ShaderVisualOutput::load_vertexbuffer()
 {
 	// generate and bind the vertex buffer.
 	const vec2 vertices[6] =
@@ -37,27 +69,10 @@ void ShaderVisualOutput::load_shader()
 
 
 	glGenBuffers(1, &vertexbuffer_);
-	
+
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer_);
 
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	
-	
-	// load and compile shader
-	std::unique_ptr<Shader> _vert(new Shader(GL_VERTEX_SHADER));
-	_vert.get()->load_from_file("..\\..\\shaders\\default.vs.glsl");
-	_vert.get()->compile();
-
-	std::unique_ptr<Shader> _frag(new Shader(GL_FRAGMENT_SHADER));
-	_frag.get()->load_from_file("..\\..\\shaders\\default.fs.glsl");
-	_frag.get()->compile();
-
-	
-	program_.get()->attach_shader( *(_vert.get()) );
-	program_.get()->attach_shader( *(_frag.get()) );
-	program_.get()->link();
-
-	return;
 }
 
 
@@ -85,9 +100,6 @@ void ShaderVisualOutput::load_framebuffer()
 
 void ShaderVisualOutput::reload()
 {
-	program_.get()->disable();
-	program_.reset(new ShaderProgram);
-
 	load_shader();
 }
 

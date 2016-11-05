@@ -22,8 +22,10 @@ void ShaderProgram::attach_shader(Shader shader)
 }
 
 
-void ShaderProgram::link()
+bool ShaderProgram::link()
 {
+	bool result;
+
 	if (shadercount_ >= MIN_NUM_SHADER)
 	{
 
@@ -35,17 +37,22 @@ void ShaderProgram::link()
 		if (succeed == GL_FALSE)
 		{
 			std::cout << "Shader program linking failed." << std::endl;
+			result = false;
 		}
 		else
 		{
 			std::cout << "Shader program linking succeed." << std::endl;
+			result = true;
 		}
 	}
 	else
 	{
 		std::cout << "Cannot linking program: You need attach at least 2 shader to link shader program"
 			<< std::endl;
+		result = false;
 	}
+
+	return result;
 }
 
 
