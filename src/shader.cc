@@ -42,9 +42,18 @@ void Shader::load_from_file(const std::string& filename)
 
 	source_ = ss.str();
 
-	const char* sourceChars = source_.c_str();
+	const char* source_chars = source_.c_str();
 
-	glShaderSource(id_, 1, &sourceChars, NULL);
+	glShaderSource(id_, 1, &source_chars, NULL);
+}
+
+
+void Shader::load_from_buffer(const std::string& source)
+{
+	source_ = source;
+	const char* source_chars = source_.c_str();
+
+	glShaderSource(id_, 1, &source_chars, NULL);
 }
 
 

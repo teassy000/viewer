@@ -22,6 +22,9 @@
     <Filter Include="Source Files\Imgui">
       <UniqueIdentifier>{106f459e-2ea9-42db-81e9-f935c01ab370}</UniqueIdentifier>
     </Filter>
+    <Filter Include="manager">
+      <UniqueIdentifier>{4f74ea6e-7fbf-4444-ac3a-4518072ab9c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\extern\glad\src\glad.c">
@@ -35,9 +38,6 @@
     </ClCompile>
     <ClCompile Include="..\extern\imgui\imgui_draw.cpp">
       <Filter>Source Files\Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\glgraphicmanager.cc">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\main.cc">
       <Filter>Source Files</Filter>
@@ -53,6 +53,12 @@
     </ClCompile>
     <ClCompile Include="..\src\shadervisualoutput.cc">
       <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\glgraphicmanager.cc">
+      <Filter>manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\shadersource.cc">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -71,13 +77,16 @@
     <ClInclude Include="..\inc\shadervisualoutput.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\glgraphicmanager.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\inc\baserenderobject.h">
       <Filter>Rendering</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\shaderprogram.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\glgraphicmanager.h">
+      <Filter>manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\shadersource.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

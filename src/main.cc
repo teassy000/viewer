@@ -2,6 +2,8 @@
 #include "glgraphicmanager.h"
 #include "imgui_glfw_impl.h"
 
+#include <vector>
+
 
 
 static void error_callback(int error, const char* description)
@@ -51,9 +53,14 @@ int main(void)
 
 		{
 			ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiSetCond_FirstUseEver);
-			ImGui::Begin("Title");
-			ImGui::Text("Hello, world!");
+			ImGui::Begin("source code");
+			
+			std::string str = glGraphicManager::get_instance()->get_fragment_src();
 
+			static std::vector<char> text(str.begin(), str.end());
+			text.push_back('\0');
+
+			ImGui::InputTextMultiline("##source", &text[0], text.size(), ImVec2(-1.0f, ImGui::GetTextLineHeight() * 88), ImGuiInputTextFlags_AllowTabInput);
 			ImGui::End();
 		}
 

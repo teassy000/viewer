@@ -4,6 +4,8 @@
 
 ShaderVisualOutput::ShaderVisualOutput()
 	: program_(std::make_unique<ShaderProgram>())
+	, vertex_source_(std::make_unique<ShaderSource>())
+	, fragment_source_(std::make_unique<ShaderSource>())
 {
 }
 
@@ -17,7 +19,10 @@ ShaderVisualOutput::~ShaderVisualOutput()
 void ShaderVisualOutput::load()
 {
 	load_vertexbuffer();
+
+	load_shader_source();
 	load_shader();
+
 	load_framebuffer();
 }
 
@@ -25,20 +30,21 @@ void ShaderVisualOutput::load()
 void ShaderVisualOutput::load_shader()
 {	
 	bool result = false;
+
 	// load and compile shader
 	std::unique_ptr<Shader> vert(new Shader(GL_VERTEX_SHADER));
-	vert.get()->load_from_file("..\\..\\shaders\\default.vs.glsl");
+	vert.get()->load_from_buffer(vertex_source_->get_source());
 	result = vert.get()->compile();
 	if (!result)
 		return;
 
 	std::unique_ptr<Shader> frag(new Shader(GL_FRAGMENT_SHADER));
-	frag.get()->load_from_file("..\\..\\shaders\\default.fs.glsl");
+	frag.get()->load_from_buffer(fragment_source_->get_source());
 	result = frag.get()->compile();
-
 	if (!result)
 		return;
 
+	//link
 	std::unique_ptr<ShaderProgram> program(new ShaderProgram);
 	program.get()->attach_shader(*(vert.get()));
 	program.get()->attach_shader(*(frag.get()));
@@ -46,10 +52,21 @@ void ShaderVisualOutput::load_shader()
 	if (!result)
 		return;
 
-	// if everything is correct, then set the program_
+	//if everything is correct, then set the program_
 	program_.get()->disable();
 	program_.reset(new ShaderProgram);
 	program_ = std::move(program);
+
+	//save fragment_source_ to file.
+	save_fragment_source();
+}
+
+
+void ShaderVisualOutput::load_shader_source()
+{
+	vertex_source_->readfromfile("..\\..\\shaders\\default.vs.glsl");
+
+	fragment_source_->readfromfile("..\\..\\shaders\\default.fs.glsl");
 }
 
 
@@ -95,6 +112,12 @@ void ShaderVisualOutput::load_framebuffer()
 
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 		return;
+}
+
+
+void ShaderVisualOutput::save_fragment_source()
+{
+	fragment_source_->save();
 }
 
 

@@ -2,6 +2,7 @@
 
 #include "precomp.h"
 #include "shadervisualoutput.h"
+#include <string>
 
 
 // Here's glGraphicManager do:
@@ -29,6 +30,11 @@ public:
 	void reload();
 	void render();
 	void shutdown();
+
+	// for fragment shader source
+	void save() const;
+	std::string get_fragment_src() const;
+	void set_fragment_src(std::string);
 
 private:
 	std::unique_ptr<ShaderVisualOutput> shaderoutput_;
