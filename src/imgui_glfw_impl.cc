@@ -3,6 +3,9 @@
 #include "precomp.h"
 #include "imgui_glfw_impl.h"
 #include "glgraphicmanager.h"
+#include "shadersource.h"
+
+#include <string>
 
 #ifdef _WIN32
 #undef APIENTRY
@@ -21,6 +24,12 @@ static int          g_ShaderHandle = 0, g_VertHandle = 0, g_FragHandle = 0;
 static int          g_AttribLocationTex = 0, g_AttribLocationProjMtx = 0;
 static int          g_AttribLocationPosition = 0, g_AttribLocationUV = 0, g_AttribLocationColor = 0;
 static unsigned int g_VboHandle = 0, g_VaoHandle = 0, g_ElementsHandle = 0;
+static std::string  g_frag_str;
+
+void set_frag_str(std::string str)
+{
+	g_frag_str = str;
+}
 
 // This is the main rendering function that you have to implement and provide to ImGui (via setting up 'RenderDrawListsFn' in the ImGuiIO structure)
 // If text or lines are blurry when integrating ImGui in your engine:
@@ -155,7 +164,24 @@ void ImGui_ImplGlfwGL3_KeyCallback(GLFWwindow*, int key, int, int action, int mo
 
 
 	if (io.KeyCtrl && io.KeysDown[GLFW_KEY_R])
-		glGraphicManager::get_instance()->reload();
+	{
+		glGraphicManager::get_instance()->set_source(g_frag_str, ShaderVisualOutput::ShaderType::fragmentshader);
+		bool result = glGraphicManager::get_instance()->reload();
+		if (result)
+		{
+			ShaderSource::get_instance()->set_fragment_source(g_frag_str);
+			ShaderSource::get_instance()->save_to_fragment();
+		}
+	}
+
+	if (io.KeyCtrl && io.KeysDown[GLFW_KEY_S])
+	{
+		ShaderSource::get_instance()->set_fragment_source(g_frag_str);
+		ShaderSource::get_instance()->save_to_fragment();
+	}
+
+
+
 }
 
 void ImGui_ImplGlfwGL3_CharCallback(GLFWwindow*, unsigned int c)

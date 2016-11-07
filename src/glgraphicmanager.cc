@@ -19,9 +19,9 @@ void glGraphicManager::load(std::string vertex_src, std::string fragment_src)
 
 
 
-void glGraphicManager::reload()
+bool glGraphicManager::reload()
 {
-	shaderoutput_.get()->reload();
+	return shaderoutput_.get()->reload();
 }
 
 

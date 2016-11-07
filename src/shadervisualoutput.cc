@@ -5,6 +5,7 @@
 ShaderVisualOutput::ShaderVisualOutput()
 	: program_(std::make_unique<ShaderProgram>())
 {
+
 }
 
 
@@ -26,22 +27,21 @@ void ShaderVisualOutput::load(std::string vertex_src, std::string fragment_src)
 }
 
 
-void ShaderVisualOutput::load_shader()
+bool ShaderVisualOutput::load_shader()
 {	
 	bool result = false;
-	iscompilesucceed = false;
 	// load and compile shader
 	std::unique_ptr<Shader> vert(new Shader(GL_VERTEX_SHADER));
 	vert.get()->load_from_buffer(vertex_source_);
 	result = vert.get()->compile();
 	if (!result)
-		return;
+		return false;
 
 	std::unique_ptr<Shader> frag(new Shader(GL_FRAGMENT_SHADER));
 	frag.get()->load_from_buffer(fragment_source_);
 	result = frag.get()->compile();
 	if (!result)
-		return;
+		return false;
 
 	//link
 	std::unique_ptr<ShaderProgram> program(new ShaderProgram);
@@ -49,14 +49,14 @@ void ShaderVisualOutput::load_shader()
 	program.get()->attach_shader(*(frag.get()));
 	result = program.get()->link();
 	if (!result)
-		return;
+		return false;
 
 	//if everything is correct, then set the program_
 	program_.get()->disable();
 	program_.reset(new ShaderProgram);
 	program_ = std::move(program);
 
-	iscompilesucceed = true;
+	return true;
 }
 
 
@@ -115,9 +115,9 @@ void ShaderVisualOutput::load_framebuffer()
 }
 
 
-void ShaderVisualOutput::reload()
+bool ShaderVisualOutput::reload()
 {
-	load_shader();
+	return load_shader();
 }
 
 

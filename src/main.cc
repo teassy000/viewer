@@ -35,13 +35,16 @@ int main(void)
 	std::cout << "GL version "  << GLVersion.major << "." 
 		<< GLVersion.minor  << "is loaded" << std::endl;
 
-	ShaderSource vertex_src = ShaderSource();
-	vertex_src.readfromfile("..\\..\\shaders\\default.vs.glsl");
+	
+	ShaderSource::get_instance()->read_vertex_src_fromfile("..\\..\\shaders\\default.vs.glsl");
+	ShaderSource::get_instance()->read_fragment_src_fromfile("..\\..\\shaders\\default.fs.glsl");
 
-	ShaderSource fragment_src = ShaderSource();
-	fragment_src.readfromfile("..\\..\\shaders\\default.fs.glsl");
-
-	glGraphicManager::get_instance()->load(vertex_src.get_source(), fragment_src.get_source());
+	{
+		std::string vert, frag;
+		vert = ShaderSource::get_instance()->get_vertex_source();
+		frag = ShaderSource::get_instance()->get_fragment_source();
+		glGraphicManager::get_instance()->load(vert, frag);
+	}
 
 	ImGui_ImplGlfwGL3_Init(window, true);
 
@@ -62,13 +65,16 @@ int main(void)
 			ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiSetCond_FirstUseEver);
 			ImGui::Begin("source code");
 			
-			std::string str = fragment_src.get_source();
+			std::string str = ShaderSource::get_instance()->get_fragment_source();
 
 			static std::vector<char> text(str.begin(), str.end());
 			text.push_back('\0');
 
 			ImGui::InputTextMultiline("##source", &text[0], text.size(), ImVec2(-1.0f, ImGui::GetTextLineHeight() * 88), ImGuiInputTextFlags_AllowTabInput);
 			ImGui::End();
+
+			std::string str_after(text.begin(), text.end());
+			set_frag_str(str_after);
 		}
 
 

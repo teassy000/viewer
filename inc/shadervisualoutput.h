@@ -1,7 +1,6 @@
 #pragma once
 #include "precomp.h"
 #include "shaderprogram.h"
-#include "shadersource.h"
 
 class ShaderVisualOutput
 {
@@ -12,16 +11,15 @@ public:
 	~ShaderVisualOutput();
 
 	void load(std::string, std::string);
-	void reload();
+	bool reload();
 	void render();
 
 	void set_source(std::string, ShaderType);
-	bool is_shader_compile_succeed() const { return iscompilesucceed; }
 
 private:
 	void load_vertexbuffer();
 
-	void load_shader();
+	bool load_shader();
 	void load_framebuffer();
 
 private:

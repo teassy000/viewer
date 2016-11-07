@@ -27,7 +27,7 @@ public:
 	~glGraphicManager();
 
 	void load(std::string, std::string);
-	void reload();
+	bool reload();
 	void render();
 	void shutdown();
 
