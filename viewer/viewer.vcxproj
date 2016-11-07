@@ -95,7 +95,6 @@
     <ClCompile Include="..\src\shadervisualoutput.cc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\inc\baserenderobject.h" />
     <ClInclude Include="..\inc\glgraphicmanager.h" />
     <ClInclude Include="..\inc\imgui_glfw_impl.h" />
     <ClInclude Include="..\inc\precomp.h" />

@@ -77,9 +77,6 @@
     <ClInclude Include="..\inc\shadervisualoutput.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\baserenderobject.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="..\inc\shaderprogram.h">
       <Filter>Source Files</Filter>
     </ClInclude>

@@ -26,15 +26,13 @@ public:
 
 	~glGraphicManager();
 
-	void load();
+	void load(std::string, std::string);
 	void reload();
 	void render();
 	void shutdown();
 
 	// for fragment shader source
-	void save() const;
-	std::string get_fragment_src() const;
-	void set_fragment_src(std::string);
+	void set_source(std::string, ShaderVisualOutput::ShaderType);
 
 private:
 	std::unique_ptr<ShaderVisualOutput> shaderoutput_;

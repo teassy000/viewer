@@ -4,8 +4,6 @@
 
 ShaderVisualOutput::ShaderVisualOutput()
 	: program_(std::make_unique<ShaderProgram>())
-	, vertex_source_(std::make_unique<ShaderSource>())
-	, fragment_source_(std::make_unique<ShaderSource>())
 {
 }
 
@@ -16,11 +14,12 @@ ShaderVisualOutput::~ShaderVisualOutput()
 }
 
 
-void ShaderVisualOutput::load()
+void ShaderVisualOutput::load(std::string vertex_src, std::string fragment_src)
 {
 	load_vertexbuffer();
 
-	load_shader_source();
+	set_source(vertex_src, ShaderType::vertexshader);
+	set_source(fragment_src, ShaderType::fragmentshader);
 	load_shader();
 
 	load_framebuffer();
@@ -30,16 +29,16 @@ void ShaderVisualOutput::load()
 void ShaderVisualOutput::load_shader()
 {	
 	bool result = false;
-
+	iscompilesucceed = false;
 	// load and compile shader
 	std::unique_ptr<Shader> vert(new Shader(GL_VERTEX_SHADER));
-	vert.get()->load_from_buffer(vertex_source_->get_source());
+	vert.get()->load_from_buffer(vertex_source_);
 	result = vert.get()->compile();
 	if (!result)
 		return;
 
 	std::unique_ptr<Shader> frag(new Shader(GL_FRAGMENT_SHADER));
-	frag.get()->load_from_buffer(fragment_source_->get_source());
+	frag.get()->load_from_buffer(fragment_source_);
 	result = frag.get()->compile();
 	if (!result)
 		return;
@@ -57,16 +56,17 @@ void ShaderVisualOutput::load_shader()
 	program_.reset(new ShaderProgram);
 	program_ = std::move(program);
 
-	//save fragment_source_ to file.
-	save_fragment_source();
+	iscompilesucceed = true;
 }
 
 
-void ShaderVisualOutput::load_shader_source()
+void ShaderVisualOutput::set_source(std::string source, ShaderType shadertype)
 {
-	vertex_source_->readfromfile("..\\..\\shaders\\default.vs.glsl");
+	if (shadertype == ShaderType::vertexshader)
+		vertex_source_ = source;
 
-	fragment_source_->readfromfile("..\\..\\shaders\\default.fs.glsl");
+	if (shadertype == ShaderType::fragmentshader)
+		fragment_source_ = source;
 }
 
 
@@ -112,12 +112,6 @@ void ShaderVisualOutput::load_framebuffer()
 
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 		return;
-}
-
-
-void ShaderVisualOutput::save_fragment_source()
-{
-	fragment_source_->save();
 }
 
 

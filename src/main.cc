@@ -1,6 +1,7 @@
 #include "precomp.h"
 #include "glgraphicmanager.h"
 #include "imgui_glfw_impl.h"
+#include "shadersource.h"
 
 #include <vector>
 
@@ -34,8 +35,14 @@ int main(void)
 	std::cout << "GL version "  << GLVersion.major << "." 
 		<< GLVersion.minor  << "is loaded" << std::endl;
 
+	ShaderSource vertex_src = ShaderSource();
+	vertex_src.readfromfile("..\\..\\shaders\\default.vs.glsl");
 
-	glGraphicManager::get_instance()->load();
+	ShaderSource fragment_src = ShaderSource();
+	fragment_src.readfromfile("..\\..\\shaders\\default.fs.glsl");
+
+	glGraphicManager::get_instance()->load(vertex_src.get_source(), fragment_src.get_source());
+
 	ImGui_ImplGlfwGL3_Init(window, true);
 
 
@@ -55,7 +62,7 @@ int main(void)
 			ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiSetCond_FirstUseEver);
 			ImGui::Begin("source code");
 			
-			std::string str = glGraphicManager::get_instance()->get_fragment_src();
+			std::string str = fragment_src.get_source();
 
 			static std::vector<char> text(str.begin(), str.end());
 			text.push_back('\0');

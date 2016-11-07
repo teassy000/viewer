@@ -12,10 +12,9 @@ glGraphicManager::~glGraphicManager()
 }
 
 
-
-void glGraphicManager::load()
+void glGraphicManager::load(std::string vertex_src, std::string fragment_src)
 {
-	shaderoutput_.get()->load();
+	shaderoutput_.get()->load(vertex_src, fragment_src);
 }
 
 
@@ -39,21 +38,8 @@ void glGraphicManager::shutdown()
 }
 
 
-void glGraphicManager::save() const
+void glGraphicManager::set_source(std::string source, ShaderVisualOutput::ShaderType type)
 {
-	shaderoutput_->save_fragment_source();
-}
-
-
-std::string glGraphicManager::get_fragment_src() const
-{
-	std::string return_source = shaderoutput_->get_fragment_source();
-	return return_source;
-}
-
-
-void glGraphicManager::set_fragment_src(std::string source)
-{
-	shaderoutput_->set_fragment_source(source);
+	shaderoutput_->set_source(source, type);
 }
 
