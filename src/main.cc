@@ -67,13 +67,17 @@ int main(void)
 			
 			std::string str = ShaderSource::get_instance()->get_fragment_source();
 
-			static std::vector<char> text(str.begin(), str.end());
-			text.push_back('\0');
+			const static size_t BUFFER_SIZE = 4096;
+			static char text[BUFFER_SIZE];
+			strncpy_s(text, str.c_str(), sizeof(text));
+			text[sizeof(text) - 1] = '\0';
 
-			ImGui::InputTextMultiline("##source", &text[0], text.size(), ImVec2(-1.0f, ImGui::GetTextLineHeight() * 88), ImGuiInputTextFlags_AllowTabInput);
+
+			ImGui::InputTextMultiline("##source", &text[0], (size_t)BUFFER_SIZE, ImVec2(-1.0f, ImGui::GetTextLineHeight() * 44), ImGuiInputTextFlags_AllowTabInput);
+
 			ImGui::End();
 
-			std::string str_after(text.begin(), text.end());
+			std::string str_after(text);
 			set_frag_str(str_after);
 		}
 
@@ -86,6 +90,7 @@ int main(void)
 	}
 	glfwDestroyWindow(window);
 	ImGui_ImplGlfwGL3_Shutdown();
+	glGraphicManager::get_instance()->shutdown();
 	glfwTerminate();
 	exit(EXIT_SUCCESS);
 }
