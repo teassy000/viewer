@@ -11,7 +11,7 @@ ShaderVisualOutput::ShaderVisualOutput()
 
 ShaderVisualOutput::~ShaderVisualOutput()
 {
-
+	delete_framebuffer();
 }
 
 
@@ -55,6 +55,7 @@ bool ShaderVisualOutput::load_shader()
 	program_.get()->disable();
 	program_.reset(new ShaderProgram);
 	program_ = std::move(program);
+
 
 	return true;
 }
@@ -115,15 +116,22 @@ void ShaderVisualOutput::load_framebuffer()
 }
 
 
+void ShaderVisualOutput::delete_framebuffer()
+{
+	glDeleteTextures(1, &texture_);
+}
+
+
 bool ShaderVisualOutput::reload()
 {
+	program_->del();
 	return load_shader();
 }
 
 
 void ShaderVisualOutput::render()
 {
-	program_.get()->use();
+	program_->use();
 
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, (void*)0);

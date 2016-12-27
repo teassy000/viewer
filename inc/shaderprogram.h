@@ -18,6 +18,7 @@ public:
 	bool link();
 
 	inline void use() { glUseProgram(programid_); }; //enable the program
+	inline void del() { glDeleteProgram(programid_); }
 	inline void disable() { glUseProgram(0); }
 
 

@@ -22,13 +22,15 @@ private:
 	bool load_shader();
 	void load_framebuffer();
 
+	void delete_framebuffer();
+
 private:
 	std::unique_ptr<ShaderProgram> program_;
 	std::string  fragment_source_;
 	std::string  vertex_source_;
-	bool iscompilesucceed;
+	bool iscompilesucceed{false};
 
-	GLuint texture_;
-	GLuint framebuffer_;
-	GLuint vertexbuffer_;
+	GLuint texture_{0};
+	GLuint framebuffer_{0};
+	GLuint vertexbuffer_{0};
 };

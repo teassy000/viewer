@@ -34,7 +34,6 @@ void glGraphicManager::render()
 
 void glGraphicManager::shutdown()
 {
-
 }
 
 
